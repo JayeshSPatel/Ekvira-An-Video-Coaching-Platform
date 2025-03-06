@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+<h5>Lectures</h5>
+<button class="btn-primary" href="{% url 'upload_video' %}">Upload New Video</button>
+<ul>
+    {% for video in videos %}
+        <li>
+            <h4>{{ video.title }}</h4>
+            <video width="600" controls>
+                <source src="{{ video.video_file.url }}" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </li>
+    <button class="btn btn-primary" ><a href="{% url 'delete_video' video.id %}">Delete</a></button>
+    {% endfor %}
+</ul>
+</div>
+{% endblock %}
